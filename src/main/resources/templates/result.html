@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap.min.css}">
+
+        <title>Result</title>
+    </head>
+    <body class="p-3 mb-2 bg-light text-black">
+        <div class="container justify-content-center w-50 p-3" th:switch="${message}"  style="margin-top: 5em;">
+            <div class="alert alert-success fill-parent" th:case="'SuccessAddFile'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your file was successfully saved.</span>
+                <span>Click <a th:href="@{/home}" name="button" >here</a> to continue.</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:case="'EmptyFile'">
+                <h1 class="display-5">Error</h1>
+                <span name="message-text">File can not be empty.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-danger fill-parent" th:case="'NotUniqueFileName'">
+                <h1 class="display-5">Error</h1>
+                <span name="message-text">Sorry. You already add file with the same name.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessDelFile'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your file was successfully deleted.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessAddNote'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your note was successfully saved.</span>
+                <span>Click <a th:href="@{/home}"name="button" >here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessUpdNote'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your note was successfully updated.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessDelNote'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your note was successfully deleted.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessAddCredential'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your credential was successfully added.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessDelCredential'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your credential was successfully deleted.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+            <div class="alert alert-success fill-parent" th:case="'SuccessUpdCredential'">
+                <h1 class="display-5">Success</h1>
+                <span name="message-text">Your credential was successfully updated.</span>
+                <span>Click <a th:href="@{/home}" name="button">here</a> to continue.</span>
+            </div>
+        </div>
+    </body>
+</html>
