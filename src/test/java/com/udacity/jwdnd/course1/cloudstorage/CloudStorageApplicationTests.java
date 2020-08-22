@@ -166,15 +166,14 @@ class CloudStorageApplicationTests {
 		homePage.navCredentials();
 
 		CredTabPage credTabPage = new CredTabPage(driver);
+
 		sleep(3000);
-
-
-		credTabPage.createCredential("//credential", "opm", "Zcity");
+		credTabPage.createCredential("credential", "opm", "Zcity");
 
 		homePage.navCredentials();
 		sleep(3000);
-		credTabPage.editCrednetial("//credential", "opm-edit", "Zcity-edit");
-		sleep(3000);
+		credTabPage.editCrednetial("credential-edit", "opm-edit", "Zcity-edit");
+
 
 		homePage.navCredentials();
 		sleep(3000);

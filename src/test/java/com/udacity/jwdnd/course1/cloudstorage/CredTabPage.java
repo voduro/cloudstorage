@@ -56,7 +56,7 @@ public class CredTabPage {
     public void editCrednetial(String url, String username, String password) throws InterruptedException {
         sleep(5000);
         editCredentialBtn.click();
-        sleep(10000);
+        sleep(20000);
         credentialUrlText.clear();
         sleep(5000);
         credentialUsernameText.clear();
