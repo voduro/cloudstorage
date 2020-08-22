@@ -6,9 +6,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
+
+import static java.lang.Thread.sleep;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -123,18 +126,22 @@ class CloudStorageApplicationTests {
 		WebElement homeMarker = wait.until(webDriver -> webDriver.findElement(By.tagName("title")));
 
 		HomePage homePage = new HomePage(driver);
+		homePage.navNotes();
+		sleep(3000);
 
-//		homePage.navNotes(driver);
+		NotesTabPage notesTabPage = new NotesTabPage(driver);
+//		 homePage = notesTabPage.navNotes(driver);
 
+		sleep(3000);
+		notesTabPage.createNote("Test Note", "Test Description");
+//
+		homePage.navNotes();
+		sleep(3000);
+		notesTabPage.editNote("Editied Test Note", "Edited Test Description");
 
-		driver.findElement(By.id("nav-notes-tab")).click();
-		wait = new WebDriverWait(driver, 20);
-		
-		homePage.createNote("Test Note", "Test Description");
-
-		homePage.editNote("Editied Test Note", "Edited Test Description");
-
-		homePage.deleteNote();
+		homePage.navNotes();
+		sleep(3000);
+		notesTabPage.deleteNote();
 
 
 	}
@@ -156,13 +163,22 @@ class CloudStorageApplicationTests {
 		WebElement homeMarker = wait.until(webDriver -> webDriver.findElement(By.tagName("title")));
 
 		HomePage homePage = new HomePage(driver);
+		homePage.navCredentials();
+
+		CredTabPage credTabPage = new CredTabPage(driver);
+		sleep(3000);
+
+
+		credTabPage.createCredential("//credential", "opm", "Zcity");
 
 		homePage.navCredentials();
-		homePage.createCredential("//credential", "opm", "Zcity");
+		sleep(3000);
+		credTabPage.editCrednetial("//credential", "opm-edit", "Zcity-edit");
+		sleep(3000);
 
-		homePage.editCrednetial("//credential", "opmedit", "changeme");
-
-		homePage.deleteCredntial();
+		homePage.navCredentials();
+		sleep(3000);
+		credTabPage.deleteCredntial();
 
 
 	}

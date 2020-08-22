@@ -38,8 +38,8 @@ public class NoteService {
     public int updateNote(NoteForm noteForm, String username) {
         //Pull the user id from user table
         User user = userMapper.getUser(username);
-
-        return noteMapper.updateNote(new Note(noteForm.getNoteId(), userMapper.getUser(username).getUserId(), noteForm.getNoteTitle(), noteForm.getNoteDescription()));
+        Note note = new Note(noteForm.getNoteId(), userMapper.getUser(username).getUserId(), noteForm.getNoteTitle(), noteForm.getNoteDescription());
+        return noteMapper.updateNote(note);
     }
 
     public Note getNote(Integer noteId) {
