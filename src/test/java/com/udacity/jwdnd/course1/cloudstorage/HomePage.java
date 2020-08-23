@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import static java.lang.Thread.sleep;
 public class HomePage {
 
     protected static WebDriver driver;
+    private final JavascriptExecutor js;
 
     @FindBy(tagName = "Title")
     private WebElement pageTitle;
@@ -41,6 +43,7 @@ public class HomePage {
 
     public HomePage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
     }
 
     public String getTitle() {
@@ -52,18 +55,15 @@ public class HomePage {
     }
 
     public void navNotes() throws InterruptedException{
-        sleep(2000);
-        notesTab.click();
+        js.executeScript("arguments[0].click();", notesTab);
+//        sleep(2000);
+//        notesTab.click();
     }
     public void navCredentials() throws InterruptedException{
-        sleep(2000);
-        credentialsTab.click();
-
+        js.executeScript("arguments[0].click();", credentialsTab);
+//        sleep(2000);
+//        credentialsTab.click();
     }
-
-
-
-
 
 
 

@@ -127,20 +127,17 @@ class CloudStorageApplicationTests {
 
 		HomePage homePage = new HomePage(driver);
 		homePage.navNotes();
-		sleep(3000);
 
 		NotesTabPage notesTabPage = new NotesTabPage(driver);
 //		 homePage = notesTabPage.navNotes(driver);
 
-		sleep(3000);
+
 		notesTabPage.createNote("Test Note", "Test Description");
 //
 		homePage.navNotes();
-		sleep(3000);
 		notesTabPage.editNote("Editied Test Note", "Edited Test Description");
 
 		homePage.navNotes();
-		sleep(3000);
 		notesTabPage.deleteNote();
 
 
@@ -163,20 +160,19 @@ class CloudStorageApplicationTests {
 		WebElement homeMarker = wait.until(webDriver -> webDriver.findElement(By.tagName("title")));
 
 		HomePage homePage = new HomePage(driver);
-		homePage.navCredentials();
+
 
 		CredTabPage credTabPage = new CredTabPage(driver);
 
-		sleep(3000);
+		homePage.navCredentials();
+
 		credTabPage.createCredential("credential", "opm", "Zcity");
 
 		homePage.navCredentials();
-		sleep(3000);
 		credTabPage.editCrednetial("credential-edit", "opm-edit", "Zcity-edit");
 
 
 		homePage.navCredentials();
-		sleep(3000);
 		credTabPage.deleteCredntial();
 
 

@@ -1,6 +1,7 @@
 package com.udacity.jwdnd.course1.cloudstorage;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -14,6 +15,7 @@ import static java.lang.Thread.sleep;
 
 public class NotesTabPage {
     protected static WebDriver driver;
+    private final JavascriptExecutor js;
 
     @FindBy(id="nav-notes-tab")
     private WebElement notesTab;
@@ -44,6 +46,7 @@ public class NotesTabPage {
 
     public NotesTabPage(WebDriver driver){
         PageFactory.initElements(driver, this);
+        js = (JavascriptExecutor) driver;
     }
 
     public HomePage navNotes(WebDriver driver) throws InterruptedException{
@@ -55,38 +58,23 @@ public class NotesTabPage {
     }
 
     public void createNote(String title, String description)throws InterruptedException{
-        sleep(2000);
-        addNoteBtn.click();
-        sleep(2000);
-        noteTitleText.sendKeys(title);
-        noteDescriptionText.sendKeys(description);
-        sleep(2000);
-        saveChangesBtn.click();
-        sleep(2000);
-        returnLink.click();
-        sleep(2000);
+        js.executeScript("arguments[0].click();", addNoteBtn);
+        js.executeScript("arguments[0].value='" + title + "';", noteTitleText);
+        js.executeScript("arguments[0].value='" + description + "';", noteDescriptionText);
+        js.executeScript("arguments[0].click();", saveChangesBtn);
+        js.executeScript("arguments[0].click();", returnLink);
     }
 
     public void editNote(String title, String description) throws InterruptedException {
-        sleep(2000);
-        editNoteBtn.click();
-        sleep(2000);
-        noteTitleText.clear();
-        noteDescriptionText.clear();
-        noteTitleText.sendKeys(title);
-        noteDescriptionText.sendKeys(description);
-        sleep(2000);
-        saveChangesBtn.click();
-        sleep(2000);
-        returnLink.click();
-        sleep(2000);
+        js.executeScript("arguments[0].click();", editNoteBtn);
+        js.executeScript("arguments[0].value='" + title + "';", noteTitleText);
+        js.executeScript("arguments[0].value='" + description + "';", noteDescriptionText);
+        js.executeScript("arguments[0].click();", saveChangesBtn);
+        js.executeScript("arguments[0].click();", returnLink);
     }
 
     public void deleteNote() throws InterruptedException {
-        sleep(2000);
-        delNoteBtn.click();
-        sleep(2000);
-        returnLink.click();
-        sleep(2000);
+        js.executeScript("arguments[0].click();", delNoteBtn);
+        js.executeScript("arguments[0].click();", returnLink);
     }
 }
