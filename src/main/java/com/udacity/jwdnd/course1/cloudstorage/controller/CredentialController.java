@@ -22,22 +22,45 @@ public class CredentialController {
     public String addCredential(@ModelAttribute(value = "credentialForm") CredentialForm credentialForm, Authentication authentication, Model model) {
 
             System.out.println("attempt to create credential");
-            credentialService.addCredential(credentialForm, authentication.getName());
-            model.addAttribute("message", "SuccessAddCredential");
 
+            if(credentialForm.getCredentialId() == null){
+                credentialService.addCredential(credentialForm, authentication.getName());
 
+                model.addAttribute("message", "SuccessAddCredential");
 
-        return "result";
+                return "result";
+            }else {
+                credentialService.updateCredential(credentialForm, authentication.getName());
+                model.addAttribute("message", "SuccessUpdCredential");
+
+                return "result";
+            }
+//            credentialService.addCredential(credentialForm, authentication.getName());
+//            model.addAttribute("message", "SuccessAddCredential");
+//
+//        return "result";
     }
 
-    @PostMapping("/edit/{credential_id}")
-    public String editCredential(@PathVariable(value = "/edit/{credential_id}") CredentialForm credentialForm, Authentication authentication, Model model) {
-
-            credentialService.updateCredential(credentialForm, authentication.getName());
-            model.addAttribute("message", "SuccessUpdCredential");
-
-        return "result";
-    }
+//    @PostMapping("/edit/{credential_id}")
+//    public String editCredential(@PathVariable(value = "/edit/{credential_id}") CredentialForm credentialForm, Authentication authentication, Model model) {
+//
+//        if(credentialForm.getCredentialId() == null){
+//            credentialService.addCredential(credentialForm, authentication.getName());
+//
+//            model.addAttribute("message", "SuccessAddCredential");
+//
+//            return "result";
+//        }else {
+//            credentialService.updateCredential(credentialForm, authentication.getName());
+//            model.addAttribute("message", "SuccessDelCredential");
+//
+//            return "result";
+//        }
+////            credentialService.updateCredential(credentialForm, authentication.getName());
+////            model.addAttribute("message", "SuccessUpdCredential");
+////
+////        return "result";
+//    }
 
     @GetMapping("/delete/{credential_id}")
     public String deleteCredential(@PathVariable(value = "credential_id") Integer credentialId, Model model) {

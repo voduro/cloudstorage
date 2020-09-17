@@ -24,20 +24,47 @@ public class NoteController {
 
         int userId = userService.getUser(authentication.getName()).getUserId();
 
-        noteService.addNote(noteForm, authentication.getName());
+        if(noteForm.getNoteId() == null){
+            noteService.addNote(noteForm, authentication.getName());
 
-        model.addAttribute("message", "SuccessAddNote");
+            model.addAttribute("message", "SuccessAddNote");
 
-        return "result";
+            return "result";
+        }else {
+            noteService.updateNote(noteForm, authentication.getName());
+            model.addAttribute("message", "SuccessUpdNote");
+
+            return "result";
+        }
+
+//        noteService.addNote(noteForm, authentication.getName());
+//
+//        model.addAttribute("message", "SuccessAddNote");
+
+//        return "result";
     }
 
     @PostMapping("/edit/{note_id}")
     public String editNote(@PathVariable(value = "note_id") NoteForm noteForm, Authentication authentication, Model model) {
 
-        noteService.updateNote(noteForm, authentication.getName());
-        model.addAttribute("message", "SuccessUpdNote");
 
-        return "result";
+        if(noteForm.getNoteId() == null){
+            noteService.addNote(noteForm, authentication.getName());
+
+            model.addAttribute("message", "SuccessAddNote");
+
+            return "result";
+        }else {
+            noteService.updateNote(noteForm, authentication.getName());
+            model.addAttribute("message", "SuccessUpdNote");
+
+            return "result";
+        }
+
+//        noteService.updateNote(noteForm, authentication.getName());
+//        model.addAttribute("message", "SuccessUpdNote");
+//
+//        return "result";
     }
 
     @GetMapping("/delete/{note_id}")

@@ -45,11 +45,15 @@ public class FileController {
 
         if (fileUpload.isEmpty()) {
             model.addAttribute("message", "EmptyFile");
+        } else if (!fileService.isUniqueName(fileUpload.getOriginalFilename(), userId)) {
+            model.addAttribute("message", "NotUniqueFileName");
+            return "result";
         } else {
             fileService.addFile(new File(null, fileUpload.getOriginalFilename(), fileUpload.getContentType(), String.valueOf(fileUpload.getSize()), userId, fileUpload.getBytes()));
             model.addAttribute("message", "SuccessAddFile");
             return "result";
         }
+
 
 
         return "result";
